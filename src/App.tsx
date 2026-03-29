@@ -1,9 +1,17 @@
 import { useEffect, useState } from 'react';
 import Navigation from './components/layout/Navigation';
-import type { APIUser } from './types/user';
+import type { APIUser, LoggedInUser } from './types/user';
 import UserCard from './components/ui/UserCard';
+import Greeting from './components/ui/Greeting';
 
 function App() {
+
+	const user: LoggedInUser = {
+		age: 21,
+		name: "John Doe",
+		isLoggedIn: true,
+		username: "jonathandoe01"
+	}
 
 	const [users, setUsers] = useState<APIUser[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
@@ -28,6 +36,11 @@ function App() {
 	return (
 		<div className='bg-black text-white'>
 			<Navigation />
+
+			<Greeting
+				user={user}
+				videosType='saved'
+			/>
 
 
 			<section className='flex w-max mx-auto gap-6 flex-col'>
